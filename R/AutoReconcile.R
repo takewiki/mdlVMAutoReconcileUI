@@ -46,8 +46,8 @@ AutoReconcileUI_left <- function() {
 
     tsui::mdl_text2(id = 'text_AutoReconcile_YearMonth',label = '年月',value = '2026-08') ,
 
-    tsui::mdl_text2(id = 'text_AutoReconcile_Customer',label = '购货单位',value = '全部') ,
-    tsui::mdl_text2(id = 'text_AutoReconcile_BillNo',label = '单据编号',value = '按出库单号筛选') ,
+    tsui::mdl_text2(id = 'text_AutoReconcile_DeliveryLocation',label = '发货地点',value = '全部') ,
+    tsui::mdl_text2(id = 'text_AutoReconcile_BillNo',label = '单据编号',value = '') ,
 
 
     shiny::actionButton('btn_AutoReconcile_view','查询'),
@@ -74,8 +74,10 @@ AutoReconcileUI_left <- function() {
 AutoReconcileUI_right <- function() {
   res <- tagList(
 
-    shiny::actionButton('btn_AutoReconcile_Operation','操作'),
-    shiny::actionButton('btn_AutoReconcile_IsExpandKit','展开套件'),
+    tsui::mdl_text2(id = 'text_AutoReconcile_InvoiceNo',label = '发票号',value = 'INVO:VM2511514/INVO:VM2511514') ,
+
+    shiny::actionButton('btn_AutoReconcile_Operation','手动勾稽'),
+    #shiny::actionButton('btn_AutoReconcile_IsExpandKit','展开套件'),
 
 
   )
@@ -93,7 +95,12 @@ AutoReconcileUI_right <- function() {
 #' AutoReconcileUI_bottom()
 AutoReconcileUI_bottom <- function() {
   res <- tagList(
-    tsui::uiScrollX(tsui::mdl_dataTable(id = 'AutoReconcile_resultView',label ='结果显示' ))
+
+
+    tsui::uiScrollX(DT::dataTableOutput(outputId = 'AutoReconcile_object_dt'))
+
+
+    #tsui::uiScrollX(tsui::mdl_dataTable(id = 'AutoReconcile_resultView',label ='结果显示' ))
 
   )
   return(res)
