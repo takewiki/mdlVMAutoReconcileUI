@@ -54,6 +54,9 @@ AutoReconcileUI_left <- function() {
     tsui::mdl_download_button(id ='dl_AutoReconcile_view',label = '导出勾稽结果'),
 
 
+    shiny::actionButton('btn_AutoReconcile_view_IsUnreconciled','合法性检查'),
+    tsui::mdl_download_button(id ='dl_AutoReconcile_view_IsUnreconciled',label = '导出检查结果'),
+
 
 
 
